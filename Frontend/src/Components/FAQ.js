@@ -14,7 +14,9 @@ function FAQ() {
 
   return (
     <div className="faq-section">
-      <h1>Frequently Asked Questions</h1>
+      <h3 className="faq-title">
+      <span>Frequently Asked Questions</span>
+        </h3>
       {faqData.map((item, index) => (
         <div className="faq-item" key={index}>
           <button

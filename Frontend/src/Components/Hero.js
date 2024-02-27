@@ -43,7 +43,7 @@ function Hero() {
           <p className="text-descritpion">
           At Healthify, we prioritize your confidence in healthcare. Our 
           commitment to dependable care reflects in our tagline: 'Care 
-          You Can Believe In'. We strive to inspire trust with highquality services, ensuring every individual feels assured and 
+          You Can Believe In'. We strive to inspire trust with high quality services, ensuring every individual feels assured and 
           supported in their health journey
           </p>
           <button

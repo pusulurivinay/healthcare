@@ -1,21 +1,18 @@
-// Import necessary React components
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Navbar.css";
 import { Link } from "react-router-dom";
 
 function Navbar() {
   const [nav, setNav] = useState(false);
-  const [loginDropdown, setLoginDropdown] = useState(false);
-
   const openNav = () => {
     setNav(!nav);
   };
 
-  const toggleLoginDropdown = () => {
-    setLoginDropdown(!loginDropdown);
-  };
 
   return (
     <div className="navbar-section">
@@ -42,23 +39,15 @@ function Navbar() {
             About
           </a>
         </li>
-         <li className={`navbar-dropdown ${loginDropdown ? 'active' : ''}`} onClick={toggleLoginDropdown}>
+        <li>
           <a href="#login" className="navbar-links">
-            Log In / Sign Up
+            Log In
           </a>
-          {loginDropdown && (
-            <div className="dropdown-content">
-              <div className="dropdown-column">
-                <Link to="/user-login">User</Link>
-              </div>
-              <div className="dropdown-column">
-                <Link to="/guest-login">Guest</Link>
-              </div>
-              <div className="dropdown-column">
-                <Link to="/doctor-login">Doctor</Link>
-              </div>
-            </div>
-          )}
+        </li>
+        <li>
+          <a href="#signup" className="navbar-links">
+            Sign Up
+          </a>
         </li>
         <li>
           <a href="#contact" className="navbar-links">
@@ -89,23 +78,15 @@ function Navbar() {
               About
             </a>
           </li>
-          <li className="navbar-dropdown" onClick={toggleLoginDropdown}>
-            <a href="#login">
-              Log In / Sign Up
+          <li>
+            <a onClick={openNav} href="#login">
+              Log In
             </a>
-            {loginDropdown && (
-              <div className="dropdown-content">
-              <div className="dropdown-column">
-                <Link to="/user-login">User</Link>
-              </div>
-              <div className="dropdown-column">
-                <Link to="/guest-login">Guest</Link>
-              </div>
-              <div className="dropdown-column">
-                <Link to="/doctor-login">Doctor</Link>
-              </div>
-            </div>
-            )}
+          </li>
+          <li>
+            <a onClick={openNav} href="#signup">
+              Sign Up
+            </a>
           </li>
           <li>
             <a onClick={openNav} href="#contact">
@@ -126,5 +107,6 @@ function Navbar() {
     </div>
   );
 }
+
 
 export default Navbar;

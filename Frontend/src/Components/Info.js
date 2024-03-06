@@ -1,6 +1,8 @@
 // Info.js
 import React from "react";
 import Doctor from "../Assets/doctor-book-appointment.png";
+import InformationCard from "./InformationCard";
+import { faHeartPulse, faTruckMedical, faTooth } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Info.css";
 
 function Info() {

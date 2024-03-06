@@ -2,7 +2,27 @@
   max-width: 600px;
   margin: auto;
   padding: 20px;
-  margin-top: 350px; 
+  color: black;
+}
+
+.faq-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 0.7px;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.faq-title span::before {
+  content: '';
+  position: absolute;
+  width: 64%;
+  height: 4px;
+  background-color: #9D2553;
+  border-radius: 8px;
+  left: 0;
+  bottom: -12px;
 }
 
 .faq-item {
@@ -14,6 +34,7 @@
   width: 100%;
   text-align: left;
   padding: 10px;
+  color: black;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   cursor: pointer;

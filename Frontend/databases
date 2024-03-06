@@ -1,0 +1,33 @@
+CREATE DATABASE IF NOT EXISTS healthify;
+USE healthify;
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
+USE healthify;
+CREATE TABLE IF NOT EXISTS guest (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
+USE healthify;
+CREATE TABLE IF NOT EXISTS doctor (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
+use healthify;
+insert into guest(username,email, password) values("Admin","admin@gmail.com","admin123@");
+
+use healthify;
+insert into users(username,email, password) values("Admin","admin@gmail.com","admin123@");
+
+use healthify;
+insert into doctor(username,email, password) values("Admin","admin@gmail.com","admin123@");

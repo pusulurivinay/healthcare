@@ -1,56 +1,54 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import '../Styles/GuestLogin.css';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate,Link } from 'react-router-dom';
+import '../Components/firebase-config';
+import UserDashboard from "../Pages/Home";
 
-const loginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
-  password: Yup.string()
-    .min(8, 'Password is too short - should be 8 chars minimum.')
-    .matches(/(?=.*[0-9])/, 'Password must contain a number.')
-    .required('Password is required'),
-});
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // For navigation after successful login
 
-const GuestLogin = ({ onSwitchToSignup }) => (
-  <div className="login-container">
-    <h2>Login</h2>
-    <Formik
-      initialValues={{ email: '', password: '' }}
-      validationSchema={loginSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          console.log('Logging in', values);
-          setSubmitting(false);
-        }, 400);
-      }}
-    >
-      {({ isSubmitting }) => (
-        <Form>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <Field type="email" name="email" />
-            <ErrorMessage name="email" component="div" className="field-error" />
-          </div>
+  const handleLogin = async () => {
+    const auth = getAuth();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      // Login successful, navigate to the dashboard or home page
+      console.log("Logged in");
+    } catch (error) {
+      // Handle login errors here
+      console.error(error.message);
+      // Optionally, update UI to reflect the error
+    }
+  };
 
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <Field type="password" name="password" />
-            <ErrorMessage name="password" component="div" className="field-error" />
-          </div>
-
-          <button type="submit" disabled={isSubmitting}>
-            Login
-          </button>
-        </Form>
-      )}
-    </Formik>
+  return (
+    <div>
+      {/* Login form fields */}
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleLogin}>Login</button>
+      <p>
+      <Link to="/guest-login-forgotPassword">Forgot password?</Link>
+    </p>
     <p>
       Don't have an account? <Link to="/guest-signup">Create an account</Link>
-    </p>
-  </div>
-);
+    </p>
+    </div>
 
-export default GuestLogin;
+  );
+};
+
+export default Login;
+
+    

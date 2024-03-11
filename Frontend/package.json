@@ -29,7 +29,7 @@
     "yup": "^1.3.3"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run react\"",
+    "start": "concurrently \"npm run server\" \"npm run react\" \"HOST=0.0.0.0 PORT=3000 react-scripts start\"",
     "react": "react-scripts start",
     "server": "node server.js",
     "build": "react-scripts build",

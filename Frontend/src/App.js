@@ -61,7 +61,11 @@ function App() {
           <Route path="/user-login-forgotPassword" element={<UserForgetPassword />} />
           <Route path="/guest-login-forgotPassword" element={<UserForgetPassword />} />
           <Route path="/doctor-login-forgotPassword" element={<UserForgetPassword />} />
-          {/* <Route path="/user-profile" element={<UserProfile />} /> */}
+          
+
+          {isUser && (
+            <Route path="/user-profile" element={<UserProfile />} />
+          )}
         </Routes>
       </Router>
     </div>

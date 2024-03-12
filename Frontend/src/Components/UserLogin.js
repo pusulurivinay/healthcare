@@ -23,7 +23,7 @@ const Login = () => {
       // Login successful, navigate to the dashboard or home page
       console.log("Logged in");
       // Optionally, you can navigate to the dashboard here
-      // navigate('/dashboard');
+      navigate('/user-dashboard');
     } catch (error) {
       // Handle login errors here
       setError(error.message);

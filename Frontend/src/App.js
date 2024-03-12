@@ -16,18 +16,18 @@ import UserForgetPassword from "./Components/UserForgetPassword";
 
 
 function App() {
-  const [isUser, setIsUser] = useState(false);
-  const [isGuest, setIsGuest] = useState(false);
-  const [isDoctor, setIsDoctor] = useState(false);
-  const [data, setData] = useState(null);
+  const [isUser] = useState(false);
+  const [isGuest] = useState(false);
+  const [isDoctor] = useState(false);
+  const [setData] = useState(null);
 
   useEffect(() => {
     const db = getDatabase();
     const dbRef = ref(db, '/healthify'); // Corrected path
 
-    onValue(dbRef, (snapshot) => {
-      setData(snapshot.val());
-    });
+    // onValue(dbRef, (snapshot) => {
+    //   setData(snapshot.val());
+    // });
   }, []);
 
   const handleWriteData = () => {
@@ -46,9 +46,8 @@ function App() {
           
 
 
-
           {/* Conditional navigation */}
-          {isUser && <Route path="/UserDashboard" element={<UserDashboard />} />}
+          {isUser && <Route path="/user-signup" element={<UserDashboard />} />}
           {isGuest && <Route path="/guest-signup" element={<Navigate to="/home" replace />} />}
           {isDoctor && <Route path="/doctor-signup" element={<Navigate to="/home" replace />} />}
 
@@ -58,11 +57,11 @@ function App() {
           {!isDoctor && <Route path="/doctor-signup" element={<DoctorSignup />} />}
 
           {/* Additional routes */}
-
+          <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/user-login-forgotPassword" element={<UserForgetPassword />} />
           <Route path="/guest-login-forgotPassword" element={<UserForgetPassword />} />
           <Route path="/doctor-login-forgotPassword" element={<UserForgetPassword />} />
-          <Route path="/user-profile" element={<UserProfile />} />
+          {/* <Route path="/user-profile" element={<UserProfile />} /> */}
         </Routes>
       </Router>
     </div>

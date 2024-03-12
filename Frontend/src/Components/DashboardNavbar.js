@@ -52,7 +52,7 @@ function DashboardNavbar({ toggleServices , user}) {
         <li className="profile-icon-desktop" >
             {user && (
               <>
-                <Link to="/user-login-userDashboard-userProfile" state={{ user }}>
+                <Link to="/user-profile" state={{ user }}>
             <span className="profile-label">{user ? user.userName : ""}</span>
             <FontAwesomeIcon icon={faCircleUser} className="profile-icon" />
           </Link>
@@ -91,7 +91,7 @@ function DashboardNavbar({ toggleServices , user}) {
           <li className="profile-icon-mobile">
   {user && (
     <>
-      <Link to="/user-login-userDashboard-userProfile" state={{ user }}>
+      <Link to="/user-profile" state={{ user }}>
               <span className="profile-label-mobile">{user ? user.userName : ""}</span>
               <FontAwesomeIcon icon={faCircleUser} className="profile-icon" />
             </Link></>

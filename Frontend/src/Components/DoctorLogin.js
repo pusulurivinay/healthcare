@@ -49,10 +49,10 @@ const Login = () => {
       <button onClick={handleLogin}>Login</button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <p>
-        <Link to="/user-login-forgotPassword">Forgot password?</Link>
+        <Link to="/doctor-login-forgotPassword">Forgot password?</Link>
       </p>
       <p>
-        Don't have an account? <Link to="/user-signup">Create an account</Link>
+        Don't have an account? <Link to="/doctor-signup">Create an account</Link>
       </p>
     </div>
   );

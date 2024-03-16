@@ -75,7 +75,55 @@ a:hover {
   text-decoration: underline;
 }
 
+.passwordError {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #ffeeee; /* Light red background */
+  border: 1px solid #ffaaaa; /* Red border */
+  border-radius: 4px; /* Rounded corners */
+}
 
+.passwordError p {
+  margin-bottom: 5px;
+  /* font-weight: bold; */
+}
+
+.passwordError ul {
+  list-style-type: disc; /* Bullet points */
+  margin-left: 20px; /* Indentation */
+}
+
+.passwordError li {
+  margin-bottom: 5px;
+}
+
+/* Add animation to form fields */
+.input {
+  transition: border-color 0.3s ease;
+}
+
+.input.error {
+  border-color: #ff4d4f; /* Change border color for error */
+}
+
+/* Add animation to error messages */
+.fieldError {
+  color: #ff4d4f;
+  font-size: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    font-size: 0;
+  }
+  to {
+    opacity: 1;
+    font-size: 14px;
+  }
+}
 /*Dashboard css*/
 /* styles.css */
 

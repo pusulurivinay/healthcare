@@ -21,16 +21,7 @@ const Login = () => {
 
   const handleEmailChange = (newEmail) => {
     setEmail(newEmail);
-  };
-  const validateEmailOnBlur = () => {
-    if (!email) {
-      setEmailError('Email is required');
-    } else if (!validateEmail(email)) {
-      setEmailError('Invalid email format');
-    }
-    else{
-      setEmailError("");
-    }
+    setEmailError("");
   };
 
   // Password format validation
@@ -40,17 +31,12 @@ const Login = () => {
   };
 
   // Handle Password Change
-  const handlePasswordChange = (newPassword) => {
-    setPassword(newPassword);
-    validatePasswordOnInput(newPassword);
+  const handlePasswordChange = (password) => {
+    validatePasswordOnInput(password);
+
   };
 
   const validatePasswordOnInput = (password) => {
-
-    if (!password) {
-      setPasswordError('Password is required');
-      return;
-    }
     const lowercaseRegex = /[a-z]/;
     const uppercaseRegex = /[A-Z]/;
     const numberRegex = /[0-9]/;
@@ -69,6 +55,10 @@ const Login = () => {
       (!isSpecialCharValid ? 'Password must contain at least one special character\n' : '') +
       (!isLengthValid ? 'Password must be at least 8 characters long\n' : '')
     );
+    setPassword(password);
+    if(password === ''){
+    setPasswordError("");
+    }
   };
     
   const handleLogin = async () => {
@@ -77,20 +67,25 @@ const Login = () => {
     setEmailError('');
     setPasswordError('');
     setError('');
-    if (!email || !password || !validateEmail(email) || !validatePassword(password)) {
+
+    if (!email || !validateEmail(email)) {
       if (!email) {
         setEmailError('Email is required');
       } else if (!validateEmail(email)) {
         setEmailError('Invalid email format');
       }
-  
-      if (!password) {
-        setPasswordError('Password is required');
-      } else if (!validatePassword(password)) {
-        validatePasswordOnInput(password);  
-      }
-  
       return;
+    }
+  
+    if (!password || !validatePassword(password)) {
+      if(!password){
+        setPasswordError('Password is required');
+        return;
+      }
+      else if (!validatePassword(password)) {
+        validatePasswordOnInput(password);
+        return;
+      }
     }
     
     const auth = getAuth();
@@ -102,54 +97,71 @@ const Login = () => {
       navigate('/user-dashboard');
     } catch (error) {
       // Handle login errors here
-      setError(error.message);
-      // Optionally, update UI to reflect the error
+      console.log("Error code:", error);
+      // Check if the error has a 'code' property
+      if (error.code) {
+        // Access the error code
+        console.log("Error code:", error.code);
+
+        // Handle different error codes accordingly
+        if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found") {
+          setError("Incorrect email/password combination! Please try again.");
+        } else if (error.code === "auth/wrong-password") {
+          setError("Incorrect password! Please try again.");
+        } else {
+          setError("Login failed! Please try again later.");
+        }
+      } else {
+        // If the error object does not have a 'code' property, handle it generically
+        setError("Login failed! Please try again later.");
+      }
     }
   };
-
+  
   return (
 <div className="container">
-      <h2 className="h2">Login</h2>
-      {/* Login form fields */}
+      <h1 className="h1">
+        <Link to="/">
+          <img src="/favicon/logo1.ico" alt="Healthify" className="logo" />
+        </Link>
+      </h1>
+      {error && <p className="fieldError">{error}</p>}
       <div className="formGroup">
-        <label className="label">Email</label>
+        <label className="label"><span className="required">*</span>Email</label>
+        
         <input
           type="email"
           placeholder="example@email.com"
           value={email}
           onChange={(e) => handleEmailChange(e.target.value)}
-          onBlur={validateEmailOnBlur} // Validate email onBlur
           className={`input ${emailError ? 'error' : ''}`}
         />
         {emailError && <p className="fieldError">{emailError}</p>}
       </div>
       <div className="formGroup">
-        <label className="label">Password</label>
+        <label className="label"><span className="required">*</span>Password</label>
         <input
-          type="password"
-          // placeholder="Password@123"
+          type="password" 
           value={password}
-          onChange={(e) => {
-            handlePasswordChange(e.target.value);
-
-          }}
+          placeholder="Password@123"
+          onChange={(e) => handlePasswordChange(e.target.value)}
           className={`input ${passwordError ? 'error' : ''}`}
         />
-       {password && passwordError && (
-  <div className="passwordError">
-    <p>Password must meet the following criteria:</p>
-    <ul>
-      {passwordError.split('\n').filter(Boolean).map((error, index) => (
-        <li key={index}>{error}</li>
-      ))}
-    </ul>
-  </div>
-)}
+      {passwordError && (
+        <div className="passwordError">
+          <p>Password must meet the following criteria:</p>
+          <ul>
+            {passwordError.split('\n').filter(Boolean).map((error, index) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       </div>
       <div className="buttonContainer">
         <button onClick={handleLogin} className="button">Login</button>
       </div>
-      {error && <p className="fieldError">{error}</p>}
+      
       <p>
         <Link to="/user-login-forgotPassword">Forgot password?</Link>
       </p>

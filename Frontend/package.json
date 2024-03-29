@@ -29,7 +29,7 @@
     "yup": "^1.3.3"
   },
   "scripts": {
-    "start": "HOST=0.0.0.0 PORT=3000 react-scripts start",
+    "start": "\"npm run react\"",
     "react": "react-scripts start",
     "server": "node server.js",
     "build": "react-scripts build",

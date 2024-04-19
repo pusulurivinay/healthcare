@@ -1,10 +1,9 @@
-// Import necessary React components
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Navbar.css";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import Plans from "./Plans"; // Import the Plans component
 
 function DashboardNavbar({ toggleServices , user}) {
   const [nav, setNav] = useState(false);
@@ -12,11 +11,10 @@ function DashboardNavbar({ toggleServices , user}) {
   const openNav = () => {
     setNav(!nav);
   };
-
-  // const navigateToProfile = () => {
-  //   navigate("/user-login-userDashboard-userProfile", { state: { user } });
-  // };
-
+  const navigate = useNavigate();
+  const navigateToProfile = () => {
+    navigate("/user-profile", { state: { user } });
+  };
 
   return (
     <div className="navbar-section">
@@ -39,28 +37,29 @@ function DashboardNavbar({ toggleServices , user}) {
             About
           </a>
         </li>
+        {/* Link to the Plans component */}
         <li>
-          <a href="#plan" className="navbar-links">
+          <Link to="/plan-pricing" className="navbar-links">
             Plans & Pricing
-          </a>
+          </Link>
         </li>
         <li>
           <a href="#contact" className="navbar-links">
             Contact
           </a>
         </li>
-        <li className="profile-icon-desktop" >
-            {user && (
-              <>
-                <Link to="/user-login-userDashboard-userProfile" state={{ user }}>
-            <span className="profile-label">{user ? user.userName : ""}</span>
-            <FontAwesomeIcon icon={faCircleUser} className="profile-icon" />
-          </Link>
-          </>
-            )}
-       </li>
+        <li className="profile-icon-desktop">
+          {user && (
+            <>
+              <Link to="/user-profile" state={{ user }}>
+                <span className="profile-label">{user.userName}</span>
+                <FontAwesomeIcon icon={faCircleUser} className="profile-icon" />
+              </Link>
+            </>
+          )}
+        </li>
       </ul>
-    
+
       {/* Mobile */}
       <div className={`mobile-navbar ${nav ? "open-nav" : ""}`}>
         <div onClick={openNav} className="mobile-navbar-close">
@@ -78,8 +77,9 @@ function DashboardNavbar({ toggleServices , user}) {
               About
             </Link>
           </li>
+          {/* Link to the Plans component */}
           <li>
-            <Link onClick={openNav} href="#plan">
+            <Link onClick={openNav} to="/plan-pricing">
               Plans & Pricing
             </Link>
           </li>
@@ -89,15 +89,15 @@ function DashboardNavbar({ toggleServices , user}) {
             </Link>
           </li>
           <li className="profile-icon-mobile">
-  {user && (
-    <>
-      <Link to="/user-login-userDashboard-userProfile" state={{ user }}>
-              <span className="profile-label-mobile">{user ? user.userName : ""}</span>
-              <FontAwesomeIcon icon={faCircleUser} className="profile-icon" />
-            </Link></>
-  )}
-</li>
-         
+            {user && (
+              <>
+                <Link to="/user-profile" state={{ user }}>
+                  <span className="profile-label-mobile">{user.userName}</span>
+                  <FontAwesomeIcon icon={faCircleUser} className="profile-icon" />
+                </Link>
+              </>
+            )}
+          </li>
         </ul>
       </div>
       <div className="mobile-nav">
@@ -107,7 +107,6 @@ function DashboardNavbar({ toggleServices , user}) {
           className="hamb-icon"
         />
       </div>
-      
     </div>
   );
 }

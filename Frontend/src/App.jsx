@@ -19,6 +19,7 @@ import Plans from './Components/Plans';
 import PaymentDetails from './Components/PaymentDetails';
 import Payment from './Components/Payments';
 import ViewPlans from './Components/ViewPlans';
+import CustomerSupport from './Components/CustomerSupport';
 
 function App() {
   const [isUser] = useState(false);
@@ -73,6 +74,7 @@ function App() {
           <Route path="/payment" element={userIdFetched ? <Payment plan={plan} userId={userId} /> : null} />
           <Route path="/payment-details/:paymentId" element={<PaymentDetails />} />
           <Route path="/view-plans" element={<ViewPlans />} />
+          <Route path="/customer-support" element={<CustomerSupport />} />
         </Routes>
       </Router>
     </div>

@@ -67,7 +67,7 @@ function Footer() {
           <p className="ft-list-title">Talk To Us</p>
           <ul className="ft-list-items">
             <li>
-              <Link to={"/customer"}>Customer Support</Link>
+              <Link to={"/customer-support"}>Customer Support</Link>
             </li>
             <li>
               <a href="mailto:support@healthify.com">support@healthify.com</a>

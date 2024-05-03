@@ -1,0 +1,36 @@
+/* PaymentDetails.css */
+
+/* Container styles */
+.payment-details-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  /* background-color: #f9f9f9; */
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Button styles */
+.export-button {
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  /* width: 300px; */
+}
+
+.export-button:hover {
+  background-color: #0056b3;
+}
+
+/* Download icon styles */
+.download-icon {
+  margin-right: 5px;
+  vertical-align: middle;
+}

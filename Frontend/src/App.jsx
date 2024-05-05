@@ -18,6 +18,9 @@ import Plans from './Components/Plans';
 import PaymentDetails from './Components/PaymentDetails';
 import Payment from './Components/Payments';
 import ViewPlans from './Components/ViewPlans';
+import DoctorDashboard from './Components/DoctorDashboard';
+import DoctorProfile from './Components/DoctorProfile';
+
 
 function App() {
   const [isUser] = useState(false);
@@ -58,10 +61,12 @@ function App() {
 
           {/* Additional routes */}
           <Route path="/user-dashboard" element={<UserDashboard />} />
+          <Route path="/doctor-dashboard" element={<DoctorDashboard/>} ></Route>
           <Route path="/user-login-forgotPassword" element={<UserForgetPassword />} />
           <Route path="/guest-login-forgotPassword" element={<UserForgetPassword />} />
           <Route path="/doctor-login-forgotPassword" element={<UserForgetPassword />} />
           <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/doctor-profile" element={<DoctorProfile />} />
           <Route path="/schedule-appointment" element={<AppointmentForm />} />
           <Route path="/upcoming-appointments" element={<UpcomingAppointments />} />
           <Route path="/plan-pricing" element={<Plans userId={userId} />} /> {/* Pass userId as prop */}

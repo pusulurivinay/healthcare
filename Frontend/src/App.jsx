@@ -20,6 +20,7 @@ import Payment from './Components/Payments';
 import ViewPlans from './Components/ViewPlans';
 import DoctorDashboard from './Components/DoctorDashboard';
 import DoctorProfile from './Components/DoctorProfile';
+import CustomerSupport from './Components/CustomerSupport';
 
 
 function App() {
@@ -73,6 +74,8 @@ function App() {
           <Route path="/payment" element={<Payment userId={userId} />} />
           <Route path="/payment-details/:paymentId" element={<PaymentDetails />} />
           <Route path="/view-plans" element={<ViewPlans />} />
+          <Route path="/customer-support" element={<CustomerSupport />} />
+
         </Routes>
       </Router>
     </div>

@@ -7,6 +7,8 @@ import Footer from "../Components/Footer";
 import ProfileCard from '../Components/ProfileCardDoctor';
 
 
+
+
 const DoctorDashboard = () => {
   const [appointments, setAppointments] = useState([]);
   const navigate = useNavigate();
